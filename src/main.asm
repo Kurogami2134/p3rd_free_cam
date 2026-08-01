@@ -53,7 +53,10 @@
     lbu     at, 0x16 + 0x10(sp)
     addiu   at, at, -0x80
     sub     at, zero, at
-    sll     at, at, HOR_PWR
+    
+    lw      v0, 0x18(ra)
+    mult    v0, at
+    mflo    at
 
     lh      v0, CAM_YAW
     addu    v0, v0, at
@@ -116,6 +119,7 @@ CURRENT_VALUE:
 .float 0.3 ;  Sens
 .float -160 ;  Min
 .float 560 ;  Max
+.word 8
 
 @main_block_end:
 
